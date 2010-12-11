@@ -3,7 +3,6 @@ window.onload = function () {
 	
 	// ID of containing Div
 	var div_id = 'guitar';
-	
 	var neck_length = 700;
 	var neck_height = 100;
 	
@@ -12,7 +11,7 @@ window.onload = function () {
 	// Creates canvas 700 x 200 in above defined div
 	var paper = Raphael(div_id, 2000, 200);
 	
-	var scale_length = neck_length;
+	var scale_length = neck_length/.75;
 	var multiplier = 17.817;
 	
 	// Neck
@@ -29,12 +28,18 @@ window.onload = function () {
 		
 		// get some position markers in there
 		if (i==3 || i ==5 || i ==7 || i==9) {
-			var fret_markers = paper.circle(last_fret, neck_height/2, 8);
-			
+			var fret_markers = paper.circle((scale_formula+last_fret)/2, neck_height/2, 8);	
 		}
 		
+		// here's the octave marker
+		if (i==12) {
+			var top_octave_marker = paper.circle((scale_formula+last_fret)/2, neck_height/4, 8);
+			var bottom_octave_marker = paper.circle((scale_formula+last_fret)/2, (neck_height/4)*3, 8);
+		}
+		
+		
 		// define the last fret distance for the next go around
-		last_fret = ((scale_length-scale_formula)/multiplier)+scale_formula;
+		last_fret = scale_formula;
 	}
 	
 	
@@ -45,7 +50,7 @@ window.onload = function () {
 	var strings = [];
 	var last_string = 0;
 	for (i=0;i<=5;i++) {
-		strings[string_letters.charAt(i)] = paper.rect(0,(neck_height/6)+last_string,neck_length,1);
+		strings[string_letters.charAt(i)] = paper.rect(0,(neck_height/11)+last_string,neck_length,1);
 		
 		last_string = (neck_height/6)*(i+1);
 	}
@@ -53,5 +58,7 @@ window.onload = function () {
 	
 	
 	// highlight fret example
-	frets[1].attr("fill", "yellow");
+	//frets[1].attr("fill", "yellow");
+
+	
 };
