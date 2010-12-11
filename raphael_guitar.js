@@ -11,7 +11,7 @@ window.onload = function () {
 
 	// Creates canvas 700 x 200 in above defined div
 	var paper = Raphael(div_id, 2000, 200);
-
+	
 	var scale_length = neck_length;
 	var multiplier = 17.817;
 	
@@ -29,7 +29,7 @@ window.onload = function () {
 		
 		// get some position markers in there
 		if (i==3 || i ==5 || i ==7 || i==9) {
-			var fret_markers = paper.circle(scale_formula, neck_height/2, 8);
+			var fret_markers = paper.circle(last_fret, neck_height/2, 8);
 			
 		}
 		
@@ -37,15 +37,21 @@ window.onload = function () {
 		last_fret = ((scale_length-scale_formula)/multiplier)+scale_formula;
 	}
 	
+	
+	
 	//strings
-	for (i=1;i<=6;i++) {
-		// string paths here
-		//
-
+	//lower case 'e' is high E
+	var string_letters = "eBGDAE";
+	var strings = [];
+	var last_string = 0;
+	for (i=0;i<=5;i++) {
+		strings[string_letters.charAt(i)] = paper.rect(0,(neck_height/6)+last_string,neck_length,1);
+		
+		last_string = (neck_height/6)*(i+1);
 	}
+	
+	
 	
 	// highlight fret example
 	frets[1].attr("fill", "yellow");
-
-
 };
