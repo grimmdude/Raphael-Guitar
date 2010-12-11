@@ -5,6 +5,9 @@ window.onload = function () {
 	var div_id = 'guitar';
 	var neck_length = 700;
 	var neck_height = 100;
+	var fret_marker_color = "#F9F7F1";
+	var fretboard_color = "#FEEDD5";
+	var fret_color = "#E3E3E3";
 	
 	//------------------------------------------------------------
 
@@ -15,7 +18,7 @@ window.onload = function () {
 	var multiplier = 17.817;
 	
 	// Neck
-	var neck = paper.rect(0,0,neck_length,neck_height);
+	var neck = paper.rect(0,0,neck_length,neck_height).attr("fill", fretboard_color);
 	
 	var last_fret = 0;
 	var frets = [];
@@ -24,25 +27,23 @@ window.onload = function () {
 		var scale_formula = ((scale_length-last_fret)/multiplier)+last_fret;
 		
 		// add the fret in the proper location
-		frets[i] = paper.rect(scale_formula,0,3,neck_height);
+		frets[i] = paper.rect(scale_formula,0,3,neck_height).attr("fill",fret_color);
 		
 		// get some position markers in there
 		if (i==3 || i ==5 || i ==7 || i==9) {
-			var fret_markers = paper.circle((scale_formula+last_fret)/2, neck_height/2, 8);	
+			var fret_markers = paper.circle((scale_formula+last_fret)/2, neck_height/2, 8).attr("fill", fret_marker_color);
 		}
 		
 		// here's the octave marker
 		if (i==12) {
-			var top_octave_marker = paper.circle((scale_formula+last_fret)/2, neck_height/4, 8);
-			var bottom_octave_marker = paper.circle((scale_formula+last_fret)/2, (neck_height/4)*3, 8);
+			var top_octave_marker = paper.circle((scale_formula+last_fret)/2, neck_height/4, 8).attr("fill", fret_marker_color);
+			var bottom_octave_marker = paper.circle((scale_formula+last_fret)/2, (neck_height/4)*3, 8).attr("fill", fret_marker_color);
 		}
 		
 		
 		// define the last fret distance for the next go around
 		last_fret = scale_formula;
 	}
-	
-	
 	
 	//strings
 	//lower case 'e' is high E
@@ -55,10 +56,7 @@ window.onload = function () {
 		last_string = (neck_height/6)*(i+1);
 	}
 	
-	
-	
 	// highlight fret example
 	//frets[1].attr("fill", "yellow");
 
-	
 };
