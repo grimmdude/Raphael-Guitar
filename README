@@ -1,0 +1,4 @@
+A vector drawn guitar neck using the Raphael library.  Still a work in progress.
+
+Frets are stored as frets[1], frets[2], and so on.
+Strings are stored as strings['A'], strings['G'], and so on.
