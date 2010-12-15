@@ -57,5 +57,4 @@ window.onload = function () {
 	
 	// highlight fret example
 	//frets[1].attr("fill", "yellow");
-
 };
