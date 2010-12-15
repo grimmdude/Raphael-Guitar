@@ -6,7 +6,6 @@ window.onload = function () {
 	var neck_length = 700;
 	var neck_height = 100;
 	var fret_marker_color = "#F9F7F1";
-	var fretboard_color = "#FEEDD5";
 	var fret_color = "#E3E3E3";
 	
 	//------------------------------------------------------------
@@ -18,7 +17,7 @@ window.onload = function () {
 	var multiplier = 17.817;
 	
 	// Neck
-	var neck = paper.rect(0,0,neck_length,neck_height).attr("fill", fretboard_color);
+	var neck = paper.rect(0,0,neck_length,neck_height).attr("gradient", "90-#fff-#FFE098");
 	
 	var last_fret = 0;
 	var frets = [];
